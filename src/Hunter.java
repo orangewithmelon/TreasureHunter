@@ -16,10 +16,16 @@ public class Hunter {
      * @param hunterName The hunter's name.
      * @param startingGold The gold the hunter starts with.
      */
-    public Hunter(String hunterName, int startingGold) {
+    public Hunter(String hunterName, int startingGold, boolean testMode) {
         this.hunterName = hunterName;
-        kit = new String[5]; // only 5 possible items can be stored in kit
-        gold = startingGold;
+        if(testMode) {
+            gold = 100;
+            kit = new String[]{"water", "rope", "machete", "horse", "boat", "boots"};
+        } else {
+            gold = startingGold;
+            kit = new String[6];
+        }
+
     }
 
     //Accessors
@@ -69,7 +75,6 @@ public class Hunter {
         if (buyBackPrice <= 0 || !hasItemInKit(item)) {
             return false;
         }
-
         gold += buyBackPrice;
         removeItemFromKit(item);
         return true;
