@@ -35,7 +35,8 @@ public class Hunter {
     public void changeGold(int modifier) {
         gold += modifier;
         if (gold < 0) {
-            gold = 0;
+            TreasureHunter gameover = new TreasureHunter();
+            gameover.gameOver();
         }
     }
 

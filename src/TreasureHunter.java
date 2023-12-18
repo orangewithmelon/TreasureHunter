@@ -112,6 +112,10 @@ public class TreasureHunter {
         }
     }
 
+    public void gameOver() {
+        processChoice("o");
+    }
+
     /**
      * Takes the choice received from the menu and calls the appropriate method to carry out the instructions.
      * @param choice The action to process.
@@ -129,6 +133,8 @@ public class TreasureHunter {
             currentTown.lookForTrouble();
         } else if (choice.equals("x")) {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+        } else if (choice.equals("o")) {
+            System.out.println("You died. Cause of death: Not being able to pay the money.");
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
