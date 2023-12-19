@@ -108,7 +108,10 @@ public class TreasureHunter {
      */
     private void showMenu() {
         String choice = "";
-
+        if(hunter.Win()) {
+            choice="y";
+            processChoice(choice);
+        }
         while (!choice.equals("x")) {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
@@ -151,6 +154,8 @@ public class TreasureHunter {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
         } else if (choice.equals("d")) {
             currentTown.dig();
+        } else if (choice.equals("y")) {
+            System.out.println("Congratulations, " + hunter.getHunterName() + "! You found all of the treasures! You won!");
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
@@ -160,3 +165,4 @@ public class TreasureHunter {
         return easyMode;
     }
 }
+
