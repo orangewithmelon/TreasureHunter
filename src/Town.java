@@ -12,6 +12,8 @@ public class Town {
     private String printMessage;
     private boolean toughTown;
     private boolean dug;
+    private String treasure;
+    private boolean searched;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -48,7 +50,16 @@ public class Town {
     public void hunterArrives(Hunter hunter) {
         this.hunter = hunter;
         printMessage = "Welcome to town, " + hunter.getHunterName() + ".";
-
+        int treasure = (int) (Math.random()*4)+1;
+        if(treasure==1) {
+            this.treasure = "dust";
+        } else if(treasure==2) {
+            this.treasure = "a crown";
+        } else if(treasure==3) {
+            this.treasure = "a trophy";
+        } else {
+            this.treasure = "a gem";
+        }
         if (toughTown) {
             printMessage += "\nIt's pretty rough around here, so watch yourself.";
         } else {
@@ -151,6 +162,22 @@ public class Town {
     private boolean checkItemBreak() {
         double rand = Math.random();
         return (rand < 0.5);
+    }
+    public void findTreasure() {
+        if(searched) {
+            System.out.println("You already searched this town");
+        } else {
+            searched = true;
+            System.out.println("You found " + treasure);
+            if (treasure.equals("dust")) {
+                System.out.println("Dust is not being added to your treasure bag.");
+            } else if (hunter.inTreasureBag(treasure)) {
+                System.out.println("You already have this item. This is not being added to your bag.");
+            } else {
+                System.out.println("This is being added to your treasure bag.");
+                hunter.addItemToTreasureBag(treasure);
+            }
+        }
     }
 
     public void dig() {
