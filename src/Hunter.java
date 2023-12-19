@@ -106,7 +106,21 @@ public class Hunter {
         for (int i = 0; i < 4; i++) {
             if(treasureBag[i]=="none") {
                 treasureBag[i] = treasureFound;
+                i=4;
             }
+        }
+    }
+    public boolean treasureIsEmpty() {
+        int counter = 0;
+        for(int i=0; i < 4; i++) {
+            if(!(treasureBag[i].equals("none"))) {
+                counter++;
+            }
+        }
+        if(counter>0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -170,6 +184,16 @@ public class Hunter {
         String str = hunterName + " has " + Colors.YELLOW + gold + " gold" + Colors.RESET;
         if (!kitIsEmpty()) {
             str += " and " + Colors.PURPLE + getInventory() + Colors.RESET;
+        }
+        str += "\nTreasures found: ";
+        if(!(treasureIsEmpty())) {
+            str+= "none";
+        } else {
+            for(int i=0; i<4;i++) {
+                if(!(treasureBag[i].equals("none"))) {
+                    str+= treasureBag[i] + " ";
+                }
+            }
         }
         return str;
     }
