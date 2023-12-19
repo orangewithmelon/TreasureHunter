@@ -64,7 +64,7 @@ public class Town {
             printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
             if (checkItemBreak()) {
                 hunter.removeItemFromKit(item);
-                printMessage += "\nUnfortunately, your " + item + " broke.";
+                printMessage += "\nUnfortunately, you lost your " + item + ".";
             }
 
             return true;
@@ -80,6 +80,7 @@ public class Town {
      * @param choice If the user wants to buy or sell items at the shop.
      */
     public void enterShop(String choice) {
+        printMessage = "";
         shop.enter(hunter, choice);
     }
 
@@ -91,9 +92,9 @@ public class Town {
     public void lookForTrouble() {
         double noTroubleChance;
         if (toughTown) {
-            noTroubleChance = 0.99;
+            noTroubleChance = 0.66;
         } else {
-            noTroubleChance = 0.99;
+            noTroubleChance = 0.33;
         }
 
         if (Math.random() > noTroubleChance) {
