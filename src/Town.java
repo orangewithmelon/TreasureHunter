@@ -91,9 +91,9 @@ public class Town {
     public void lookForTrouble() {
         double noTroubleChance;
         if (toughTown) {
-            noTroubleChance = 0.66;
+            noTroubleChance = 0.99;
         } else {
-            noTroubleChance = 0.33;
+            noTroubleChance = 0.99;
         }
 
         if (Math.random() > noTroubleChance) {
