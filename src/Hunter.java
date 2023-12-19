@@ -26,7 +26,7 @@ public class Hunter {
             gold = startingGold;
             kit = new String[6];
         }
-        treasureBag = new String[]{"none","none","none","none"};
+        treasureBag = new String[]{"none","none","none"};
     }
 
     //Accessors
@@ -103,7 +103,7 @@ public class Hunter {
         return false;
     }
     public void addItemToTreasureBag(String treasureFound) {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             if(treasureBag[i]=="none") {
                 treasureBag[i] = treasureFound;
                 i=4;
@@ -112,7 +112,7 @@ public class Hunter {
     }
     public boolean treasureIsEmpty() {
         int counter = 0;
-        for(int i=0; i < 4; i++) {
+        for(int i=0; i < 3; i++) {
             if(!(treasureBag[i].equals("none"))) {
                 counter++;
             }
@@ -189,13 +189,25 @@ public class Hunter {
         if(!(treasureIsEmpty())) {
             str+= "none";
         } else {
-            for(int i=0; i<4;i++) {
+            for(int i=0; i<3;i++) {
                 if(!(treasureBag[i].equals("none"))) {
                     str+= treasureBag[i] + " ";
                 }
             }
         }
         return str;
+    }
+    public boolean Win() {
+        int count = 0;
+        for(String treasure : treasureBag) {
+            if(treasure!="none") {
+                count++;
+            }
+        }
+        if(count==3) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -242,7 +254,6 @@ public class Hunter {
                 return i;
             }
         }
-
         return -1;
     }
 }
