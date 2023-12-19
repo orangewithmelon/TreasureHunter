@@ -8,6 +8,7 @@ public class Hunter {
     //instance variables
     private String hunterName;
     private String[] kit;
+    private String[] treasureBag;
     private int gold;
 
     /**
@@ -25,7 +26,7 @@ public class Hunter {
             gold = startingGold;
             kit = new String[6];
         }
-
+        treasureBag = new String[]{"none","none","none","none"};
     }
 
     //Accessors
@@ -91,6 +92,21 @@ public class Hunter {
         // if item is found
         if (itmIdx >= 0) {
             kit[itmIdx] = null;
+        }
+    }
+    public boolean inTreasureBag(String treasureFound) {
+        for(String treasure : treasureBag) {
+            if(treasure.equals(treasureFound)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public void addItemToTreasureBag(String treasureFound) {
+        for (int i = 0; i < 4; i++) {
+            if(treasureBag[i]=="none") {
+                treasureBag[i] = treasureFound;
+            }
         }
     }
 
