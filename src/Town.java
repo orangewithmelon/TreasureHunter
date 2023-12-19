@@ -11,6 +11,7 @@ public class Town {
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private boolean dug;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -30,10 +31,13 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        dug = false;
     }
 
     public String getLatestNews() {
-        return printMessage;
+        String message = printMessage;
+        printMessage = "";
+        return message;
     }
 
     /**
@@ -66,7 +70,7 @@ public class Town {
                 hunter.removeItemFromKit(item);
                 printMessage += "\nUnfortunately, you lost your " + item + ".";
             }
-
+            dug = false;
             return true;
         }
 
@@ -80,7 +84,6 @@ public class Town {
      * @param choice If the user wants to buy or sell items at the shop.
      */
     public void enterShop(String choice) {
-        printMessage = "";
         shop.enter(hunter, choice);
     }
 
@@ -148,5 +151,24 @@ public class Town {
     private boolean checkItemBreak() {
         double rand = Math.random();
         return (rand < 0.5);
+    }
+
+    public void dig() {
+        if (!dug) {
+            if (hunter.hasItemInKit("shovel")) {
+                if (Math.random() < 0.5) {
+                    int gold = (int) (Math.random() * 19) + 1;
+                    hunter.changeGold(gold);
+                    System.out.println("You dug up " + gold + " gold!");
+                } else {
+                    System.out.println("You dug but only found dirt.");
+                }
+                dug = true;
+            } else {
+                System.out.println("You can't dig for gold without a shovel.");
+            }
+        } else {
+            System.out.println("You already dug for gold in this town.");
+        }
     }
 }

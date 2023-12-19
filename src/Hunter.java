@@ -41,7 +41,7 @@ public class Hunter {
     public void changeGold(int modifier) {
         gold += modifier;
         if (gold < 0) {
-            System.out.println("You lost because you couldn't pay the money.");
+            System.out.println("Game Over. You lost the fight and couldn't pay the money.");
             System.exit(0);
         }
     }
