@@ -167,7 +167,7 @@ public class Town {
             searched = true;
             System.out.println("You found " + treasure);
             if (treasure.equals("dust")) {
-                System.out.println("Dust isn't being added to your treasure bag.");
+                System.out.println("Dust is not being added to your treasure bag.");
             } else if (hunter.inTreasureBag(treasure)) {
                 System.out.println("You already have this item. This is not being added to your bag.");
             } else {
