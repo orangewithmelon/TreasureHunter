@@ -81,7 +81,7 @@ public class TreasureHunter {
             toughness = 0.75;
         }
         if (easyMode) {
-            markdown = 0;
+            markdown = 1;
             toughness = 0.2;
         }
         // note that we don't need to access the Shop object
