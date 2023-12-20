@@ -108,29 +108,30 @@ public class TreasureHunter {
      */
     private void showMenu() {
         String choice = "";
-        if(hunter.Win()) {
-            choice="y";
-            processChoice(choice);
+        while(choice!="x" && choice!="y") {
+            if(hunter.Win()) {
+                choice = "y";
+                processChoice(choice);
+            } else {
+                    System.out.println();
+                    System.out.println(currentTown.getLatestNews());
+                    System.out.println("***");
+                    System.out.println(hunter);
+                    System.out.println(currentTown);
+                    System.out.println("(B)uy something at the shop.");
+                    System.out.println("(S)ell something at the shop.");
+                    System.out.println("(M)ove on to a different town.");
+                    System.out.println("(L)ook for trouble!");
+                    System.out.println("(D)ig for gold!");
+                    System.out.println("(H)unt for treasure");
+                    System.out.println("Give up the hunt and e(X)it.");
+                    System.out.println();
+                    System.out.print("What's your next move? ");
+                    choice = SCANNER.nextLine().toLowerCase();
+                    processChoice(choice);
+                }
+            }
         }
-        while (!choice.equals("x")) {
-            System.out.println();
-            System.out.println(currentTown.getLatestNews());
-            System.out.println("***");
-            System.out.println(hunter);
-            System.out.println(currentTown);
-            System.out.println("(B)uy something at the shop.");
-            System.out.println("(S)ell something at the shop.");
-            System.out.println("(M)ove on to a different town.");
-            System.out.println("(L)ook for trouble!");
-            System.out.println("(D)ig for gold!");
-            System.out.println("(H)unt for treasure");
-            System.out.println("Give up the hunt and e(X)it.");
-            System.out.println();
-            System.out.print("What's your next move? ");
-            choice = SCANNER.nextLine().toLowerCase();
-            processChoice(choice);
-        }
-    }
 
 
     /**
