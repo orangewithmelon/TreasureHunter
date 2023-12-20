@@ -21,10 +21,10 @@ public class Hunter {
         this.hunterName = hunterName;
         if(testMode) {
             gold = 100;
-            kit = new String[]{"water", "rope", "machete", "horse", "boat", "boots"};
+            kit = new String[]{"water", "rope", "machete", "horse", "boat", "boots", "sword"};
         } else {
             gold = startingGold;
-            kit = new String[6];
+            kit = new String[8];
         }
         treasureBag = new String[]{"none","none","none"};
     }
@@ -55,8 +55,10 @@ public class Hunter {
      * @return true if the item is successfully bought.
      */
     public boolean buyItem(String item, int costOfItem) {
-        if (costOfItem == 0 || gold < costOfItem || hasItemInKit(item)) {
-            return false;
+        if (!TreasureHunter.getSamuraiMode()) {
+            if (costOfItem == 0 || gold < costOfItem || hasItemInKit(item)) {
+                return false;
+            }
         }
 
         gold -= costOfItem;

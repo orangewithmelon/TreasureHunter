@@ -15,6 +15,7 @@ public class Shop {
     private static final int HORSE_COST = 12;
     private static final int BOAT_COST = 20;
     private static final int SHOVEL_COST = 8;
+    private static final int SAMURAI_SWORD = 0;
 
     // static variables
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -49,8 +50,21 @@ public class Shop {
             System.out.print("What're you lookin' to buy? ");
             String item = SCANNER.nextLine().toLowerCase();
             int cost = checkMarketPrice(item, true);
+            if (hunter.hasItemInKit("sword")) {
+                System.out.println("the sword intimidates the shopkeeper and he gives you the item freely");
+                cost = 0;
+            }
             if (cost == 0) {
-                System.out.println("We ain't got none of those.");
+                if (TreasureHunter.getSamuraiMode()) {
+                    System.out.print("It'll cost you " + cost + " gold. Buy it (y/n)? ");
+                    String option = SCANNER.nextLine().toLowerCase();
+
+                    if (option.equals("y")) {
+                        buyItem(item);
+                    }
+                } else {
+                    System.out.println("We ain't got none of those.");
+                }
             } else {
                 System.out.print("It'll cost you " + cost + " gold. Buy it (y/n)? ");
                 String option = SCANNER.nextLine().toLowerCase();
@@ -91,6 +105,10 @@ public class Shop {
         str += "Horse: " + HORSE_COST + " gold\n";
         str += "Boat: " + BOAT_COST + " gold\n";
         str += "Shovel: " + SHOVEL_COST + " gold\n";
+        if (TreasureHunter.getSamuraiMode()) {
+            str += "Here's a secret weapon that I can give it to you for free.\n";
+            str += "Sword: 0 gold\n";
+        }
 
         return str;
     }
@@ -159,6 +177,8 @@ public class Shop {
             return BOOTS_COST;
         } else if(item.equals("shovel")) {
             return SHOVEL_COST;
+        } else if (item.equals("sword")) {
+            return SAMURAI_SWORD;
         } else
             return 0;
         }
